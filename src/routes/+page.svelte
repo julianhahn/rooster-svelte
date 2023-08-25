@@ -1,8 +1,9 @@
-<script>
-	import Header from '$lib/Header.svelte';
-	import Section1 from '$lib/Section1.svelte';
-</script>
+<p>hello</p>
 
-<Header />
-<Section1 />
-<!-- Add more sections as needed -->
+<style>
+	p {
+		margin: 0px;
+		padding: 0px;
+		font-size: 32px;
+	}
+</style>
