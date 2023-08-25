@@ -1,22 +1,28 @@
 <script lang="ts">
-	let puppy: string;
-	let loading = false;
+	import Thing from './Thing.svelte';
+	import type { Emoji } from './Thing_Object';
 
-	async function loadPupppy() {
-		loading = true;
-		const res = await fetch('https://placedog.net/500/280');
-		puppy = URL.createObjectURL(await res.blob());
-		loading = false;
-	}
+	let things: { id: number; name: Emoji }[] = [
+		{ id: 1, name: 'apple' },
+		{ id: 2, name: 'banana' },
+		{ id: 3, name: 'carrot' },
+		{ id: 4, name: 'doughnut' },
+		{ id: 5, name: 'egg' }
+	];
 </script>
 
 <main>
-	<button on:click={loadPupppy}> click for puppy </button>
-	{#if loading}
-		<p>loading...</p>
-	{:else if puppy}
-		<img src={puppy} alt="puppy" />
-	{/if}
+	<button
+		on:click={() => {
+			things = things.slice(1);
+		}}
+	>
+		remove top item</button
+	>
+	<div class="items"></div>
+	{#each things as thing (thing.id)}
+		<Thing name={thing.name} />
+	{/each}
 </main>
 
 <style style="scss">
